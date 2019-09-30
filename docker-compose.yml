@@ -1,0 +1,17 @@
+
+version: '3'
+services:
+    db:
+      image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_ROOT_PASSWORD: docker
+
+    web:
+      build: .
+      volumes:
+        - .:/dockerApp
+      ports:
+        - "80:3000"
+      depends_on:
+        - db
